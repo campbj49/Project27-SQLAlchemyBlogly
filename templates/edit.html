@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<form>
+    <p>
+        <label>First Name</label>
+        <input type="text" value={{user.first_name}} name="firstName">
+    </p>
+    <p>
+        <label>Last Name</label>
+        <input type="text" value={{user.last_name}} name="lastName">
+    </p>
+    <p>
+        <label>Image URL</label>
+        <input type="text" value={{user.image_url}} name="imageURL">
+    </p>
+    <a href="/users">Cancel</a>
+    <button type="submit">Save</button>
+</form>
+{% endblock%}

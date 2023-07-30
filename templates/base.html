@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="/static/style.css">
+    <!--Example code for displaying flash messages from palletsprojects.com-->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <!--Tweaked base HTML from lesson-->
+    <head>
+    <title>{{title}}</title>
+    </head>
+    <body>
+    <h1>{{header}}</h1>
+    {% block content %} Body Content{% endblock%}
+    </body>
+</html>
