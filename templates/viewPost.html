@@ -1,0 +1,9 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<p>{{post.content}}</p>
+<p>By {{author}}</p>
+<a href="/users/{{post.user_id}}">Cancel</a>
+<a href="/posts/{{post.id}}/edit">Edit</a>
+<a href="/posts/{{post.id}}/delete">Delete</a>
+{% endblock%}
