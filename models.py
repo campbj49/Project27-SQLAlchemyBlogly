@@ -51,8 +51,39 @@ class Post(db.Model):
     
     user = db.relationship("User", backref="posts")
     
+    tags = db.relationship("Tag",
+                            secondary = "posts_tags",
+                            backref = "posts")
+    
     def __repr__(self):
         """Show info about the post"""
 
         p = self
         return f"<User: {p.id} {p.title} {p.user_id} {u.content}>"
+        
+class Tag(db.Model):
+    """Model for tags"""
+    __tablename__ = "tags"
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    name = db.Column(db.String(127),
+                      nullable = False)
+                      
+class PostTag(db.Model):
+    """Model joining posts and tags"""
+    __tablename__ = "posts_tags"
+    
+    post_id = db.Column(db.Integer,
+                        db.ForeignKey('posts.id'),
+                        primary_key = True)
+    tag_id = db.Column(db.Integer,
+                        db.ForeignKey('tags.id'),
+                        primary_key = True)
+    
+    
+def get_tag_check_list(post_id):
+    """Take a post_id and return the full list of tags marked with whether or not 
+        the specified post has the tag
+    """
+    return db.session.query(Tag, PostTag).outerjoin(PostTag).all()#filter_by(PostTag.post_id == post_id)

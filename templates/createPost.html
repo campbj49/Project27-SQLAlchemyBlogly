@@ -7,9 +7,13 @@
         <input type="text" name="title">
     </p>
     <p>
-        <label>Content</label>
-        <input type="textarea" name="content">
+        <label for="content">Content</label>
+        <textarea id = "content" name="content" rows="4" cols="20"></textarea>
     </p>
+    {%for tag in tags%}
+        <input type="checkbox" name = "tag-{{tag.id}}">
+        <label>{{tag.name}}</label><br>
+    {%endfor%}
     <a href="/users">Cancel</a>
     <button type="submit">Add</button>
 </form>

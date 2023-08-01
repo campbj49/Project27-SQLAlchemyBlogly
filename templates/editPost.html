@@ -4,13 +4,17 @@
 <form>
     <p>
         <label>Title</label>
-        <input type="text" value={{post.title}} name="title">
+        <input type="text" value="{{post.title}}" name="title">
     </p>
     <p>
         <label for="content">Content</label>
         <textarea id = "content" name="content" rows="4" cols="20">{{post.content}}</textarea>
     </p>
+    {%for tag in tags%}
+        <input type="checkbox" name = "tag-{{tag[0].id}}"  {%if tag[1].post_id == post.id%} checked {%endif%}>
+        <label>{{tag[0].name}}</label><br>
+    {%endfor%}
     <a href="/users/{{post.user_id}}">Cancel</a>
-    <button type="submit">Update</button>
+    <button type="submit">Save</button>
 </form>
 {% endblock%}

@@ -1,0 +1,8 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<p>{{tag.name}}</p>
+<a href="/tags">Cancel</a>
+<a href="/tags/{{tag.id}}/edit">Edit</a>
+<a href="/tags/{{tag.id}}/delete">Delete</a>
+{% endblock%}
